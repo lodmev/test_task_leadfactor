@@ -12,8 +12,19 @@ require "amocrm.php";
 
 $range = 'one';
 // $values = [["ONe", "two", "three", "four"]];
-$values = getLeads();
-echo $values;
+$valuesToInsert = [];
+$leads = getLeads();
+if ($leads) {
+  foreach($leads as $lead) {
+    $row = [];
+    if ($lead->getClosedAt()) {
+      $userName = getUser($lead->getResponsibleUserId())->getName();
+      array_push($row, $lead->getName(), $lead->getId(), $userName , $lead->getPrice());
+      array_push($valuesToInsert, $row);
+    }
+    }
+  print_r($valuesToInsert);
+}
 
 // $body = new Google_Service_Sheets_ValueRange(['values' => $values ]);
 // $params = [
