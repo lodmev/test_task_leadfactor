@@ -12,8 +12,14 @@
       "email": "lodmev@gmail.com"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/amocrm/amocrm-api-php.git"
+    }
+  ],
   "require": {
-    "amocrm/amocrm-api-library": "^0.13.0",
+    "amocrm/amocrm-api-library": "dev-master",
     "google/apiclient": "2.15.0"
   },
   "scripts": {
