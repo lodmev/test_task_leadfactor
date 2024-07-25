@@ -11,8 +11,8 @@ $gClient->setAuthConfig(__DIR__ . '\..\credentials.json');
 $service = new Google_Service_Sheets($gClient);
 
 $range = 'one';
-// $values = [["ONe", "two", "three", "four"]];
 $valuesToInsert = [];
+// get all leads from  Amo CRM
 $leads = getLeads();
 if ($leads) {
   foreach($leads as $lead) {
@@ -23,7 +23,6 @@ if ($leads) {
       array_push($valuesToInsert, $row);
     }
     }
-  print_r($valuesToInsert);
 }
 
 $body = new Google_Service_Sheets_ValueRange(['values' => $valuesToInsert ]);
@@ -40,3 +39,4 @@ $result = $service->spreadsheets_values->append(
   $params,
   $insert
 );
+print_r("Success!");
