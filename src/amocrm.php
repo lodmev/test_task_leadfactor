@@ -1,21 +1,21 @@
 <?php 
 use AmoCRM\Client\AmoCRMApiClient;
 use AmoCRM\Client\LongLivedAccessToken;
-include_once __DIR__ . '/../vendor/autoload.php';
+use AmoCRM\Exceptions\InvalidArgumentException; 
 $token = file_get_contents("token.txt");
-$client = new AmoCRMApiClient();
+$amoClient = new AmoCRMApiClient();
 try {
   $longLivedToken = new LongLivedAccessToken($token);
-} catch (\AmoCRM\Exceptions\InvalidArgumentException $e) {
+} catch (InvalidArgumentException $e) {
   printError($e);
   die;
 }
-$client->setAccessToken($longLivedToken)->setAccountBaseDomain("diman141185.amocrm.ru");
+$amoClient->setAccessToken($longLivedToken)->setAccountBaseDomain("diman141185.amocrm.ru");
 function getLeads() {
-  global $client;
-  return $client->leads()->get();
+  global $amoClient;
+  return $amoClient->leads()->get();
 }
 function getUser($userId) {
-  global $client;
-  return $client->users()->getOne($userId); 
+  global $amoClient;
+  return $amoClient->users()->getOne($userId); 
 }
