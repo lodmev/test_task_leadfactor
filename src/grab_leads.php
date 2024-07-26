@@ -7,7 +7,7 @@ $gClient = new \Google_Client();
 $gClient->setApplicationName('Grab the leads');
 $gClient->setScopes([\Google_Service_Sheets::SPREADSHEETS]);
 $gClient->setAccessType('offline');
-$gClient->setAuthConfig(__DIR__ . '\..\credentials.json');
+$gClient->setAuthConfig(__DIR__ . '/../credentials.json');
 $service = new Google_Service_Sheets($gClient);
 
 $range = 'one';
